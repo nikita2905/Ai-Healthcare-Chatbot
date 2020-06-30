@@ -6,25 +6,6 @@ import os
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
-filenumber=int(os.listdir('saved_conversations')[-1])
-filenumber=filenumber+1
-file= open('saved_conversations/'+str(filenumber),"w+")
-file.write('bot : Hi There! I am a medical chatbot. You can begin conversation by typing in a message and pressing enter.\n')
-file.close()
-
-app = Flask(__name__)
-
-
-english_bot = ChatBot('Bot',
-             storage_adapter='chatterbot.storage.SQLStorageAdapter',
-             logic_adapters=[
-   {
-       'import_path': 'chatterbot.logic.BestMatch'
-   },
-   
-],
-trainer='chatterbot.trainers.ListTrainer')
-english_bot.set_trainer(ListTrainer)
 
 @app.route("/")
 def home():
